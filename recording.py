@@ -62,3 +62,10 @@ def piRecord():
     
     print('Footage successfully uploaded to database!')
 
+# MAIN goes here
+
+
+
+
+
+# Accelerometer code goes here

@@ -1,0 +1,26 @@
+warning: LF will be replaced by CRLF in recording.py.
+The file will have its original line endings in your working directory
+[1mdiff --git a/Google.py b/Google.py[m
+[1mindex 1991f46..338921f 100644[m
+[1m--- a/Google.py[m
+[1m+++ b/Google.py[m
+[36m@@ -45,3 +45,4 @@[m [mdef Create_Service(client_secret_file, api_name, api_version, *scopes):[m
+ def convert_to_RFC_datetime(year=1900, month=1, day=1, hour=0, minute=0):[m
+     dt = datetime.datetime(year, month, day, hour, minute, 0).isoformat() + 'Z'[m
+     return dt[m
+[41m+[m
+[1mdiff --git a/recording.py b/recording.py[m
+[1mindex aac664f..9d3c6ef 100644[m
+[1m--- a/recording.py[m
+[1m+++ b/recording.py[m
+[36m@@ -62,3 +62,10 @@[m [mdef piRecord():[m
+     [m
+     print('Footage successfully uploaded to database!')[m
+ [m
+[32m+[m[32m# MAIN goes here[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m# Accelerometer code goes here[m
