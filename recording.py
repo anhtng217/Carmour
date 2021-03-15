@@ -130,7 +130,7 @@ def sendAlert():
     client = Client(account_sid, auth_token)
     
     message = client.messages.create(
-                              body='Alarm Detected! Footage recording!',
+                              body='Alarm Detected! Footage recording! Open the app to see live footage.',
                               from_='+14049484980',
                               to='+17142668369'
                           )
