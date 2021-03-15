@@ -70,6 +70,8 @@ def piRecord():
     print('Footage successfully uploaded to database!')
     """
     #sleep(5)
+    
+    
 #accelerometer
 PWR_MGMT_1   = 0x6B
 SMPLRT_DIV   = 0x19
@@ -134,7 +136,13 @@ def sendAlert():
                           )
     print("Alert sent.")
 
-
+#livestream request handler
+def checkRequest():
+    return False
+    
+    
+    
+    
 #MAIN
 while True:
     Ax = read_raw_data(ACCEL_XOUT_H)/16384
@@ -149,6 +157,8 @@ while True:
     if (Ax > 1.1 or Ax < -1.1) or (Ay > 1 or Ay < -1) or (Az > 1 or Az < -1) or (Gx > 1 or Gx < -1) or (Gy > 1 or Gy < -1) or (Gz > 1 or Gz < -1):
         sendAlert()
         piRecord()
+    if checkRequest():
+        os.system("python3 main.py")
     else:
         print("The system is normal.")
     sleep(1)
