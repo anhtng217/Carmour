@@ -8,11 +8,12 @@ from time import sleep
 from subprocess import call
 from Google import Create_Service
 from googleapiclient.http import MediaFileUpload
+from twilio.rest import Client
 
 #camera set up and recording method
 def piRecord():
-    print("Camera recording.")
-    """
+    #print("Camera recording.")
+    
     with picamera.PiCamera() as camera:
         camera.resolution = (1920, 1080)     # set video resolution
         camera.annotate_background = picamera.Color('black')
@@ -32,7 +33,7 @@ def piRecord():
             #call ([convertVid], shell=True)
         
         #os.remove("video.h264")   # remove extension .h264
-    """
+    
     """
     #upload to Youtube
     CLIENT_SECRET_FILE = 'Client_Secret1.json'
@@ -120,6 +121,19 @@ MPU_Init()
 
 print ("Reading Data from Gyroscope and Accelerometer")
 
+#send text messages
+def sendAlert():
+    account_sid = os.environ.get('TWILIOSID')
+    auth_token = os.environ.get('TWILIOTOKEN')
+    client = Client(account_sid, auth_token)
+    
+    message = client.messages.create(
+                              body='Alarm Detected! Footage recording!',
+                              from_='+14049484980',
+                              to='+17142668369'
+                          )
+    print("Alert sent.")
+
 
 #MAIN
 while True:
@@ -133,6 +147,7 @@ while True:
     print ("Ax=%.2f g" %Ax, "\tAy=%.2f g" %Ay, "\tAz=%.2f g" %Az)
     print ("Gx=%.2f dps" %Gx, "\tGy=%.2f dps" %Gy, "\tGz=%.2f dps" %Gz)
     if (Ax > 1.1 or Ax < -1.1) or (Ay > 1 or Ay < -1) or (Az > 1 or Az < -1) or (Gx > 1 or Gx < -1) or (Gy > 1 or Gy < -1) or (Gz > 1 or Gz < -1):
+        sendAlert()
         piRecord()
     else:
         print("The system is normal.")
